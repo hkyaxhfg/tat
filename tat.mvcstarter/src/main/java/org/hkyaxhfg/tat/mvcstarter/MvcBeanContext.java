@@ -1,5 +1,7 @@
 package org.hkyaxhfg.tat.mvcstarter;
 
+import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
+import org.slf4j.Logger;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -17,9 +19,15 @@ import org.springframework.stereotype.Component;
 @SuppressWarnings("all")
 public class MvcBeanContext implements BeanDefinitionRegistryPostProcessor {
 
+    private Logger logger = LoggerGenerator.logger(MvcBeanContext.class);
+
     private static BeanDefinitionRegistry registry;
 
     private static ConfigurableListableBeanFactory beanFactory;
+
+    {
+        logger.info("MvcBeanContext 初始化默认配置...");
+    }
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {

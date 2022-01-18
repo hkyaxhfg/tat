@@ -1,7 +1,9 @@
 package org.hkyaxhfg.tat.cache;
 
 import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
+import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
 import org.hkyaxhfg.tat.lang.util.TatException;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -42,6 +44,12 @@ public class CacheAutoConfigurationInitializer implements AutoConfigurationIniti
 
     @Configuration
     public static class BaseCacheConf extends CachingConfigurerSupport {
+
+        private Logger logger = LoggerGenerator.logger(BaseCacheConf.class);
+
+        {
+            logger.info("BaseCacheConf 初始化默认配置...");
+        }
 
         private final CacheProperties cacheProperties;
 
