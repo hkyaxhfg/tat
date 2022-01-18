@@ -1,14 +1,11 @@
 package org.hkyaxhfg.tat.enumstrategy;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.LongSerializationPolicy;
 import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
 import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationProperty;
 import org.hkyaxhfg.tat.lang.json.JSONProcessor;
 import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
 import org.slf4j.Logger;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
