@@ -18,7 +18,7 @@ public class SpringfoxProperties {
     /**
      * 是否启动文档, 默认为true.
      */
-    private boolean enabled = true;
+    private boolean enabled = AutoConfigurationProperty.SPRINGFOX.isDefaultValue();
     /**
      * 文档标题, 默认为 ${spring.application.name}.
      */

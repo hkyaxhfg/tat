@@ -17,6 +17,8 @@
         <module>tat.springfox</module>
         <module>tat.mvcstarter</module>
         <module>tat.cache</module>
+        <module>tat.amqp</module>
+        <module>tat.validation</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -86,6 +88,16 @@
             <dependency>
                 <groupId>org.hkyaxhfg.tat</groupId>
                 <artifactId>tat.auth</artifactId>
+                <version>${subproject.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hkyaxhfg.tat</groupId>
+                <artifactId>tat.amqp</artifactId>
+                <version>${subproject.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hkyaxhfg.tat</groupId>
+                <artifactId>tat.validation</artifactId>
                 <version>${subproject.version}</version>
             </dependency>
             <dependency>

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnSingleCandidate;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.context.annotation.Bean;
@@ -30,7 +29,6 @@ import java.util.Map;
  * @author: wjf
  * @date: 2022/1/17
  */
-@ConfigurationProperties(CacheAutoConfigurationInitializer.CACHE_AUTO_CONFIGURATION_INITIALIZER)
 @Configuration
 @ComponentScan(
         basePackages = {
@@ -40,15 +38,13 @@ import java.util.Map;
 @EnableConfigurationProperties(CacheProperties.class)
 public class CacheAutoConfigurationInitializer implements AutoConfigurationInitializer {
 
-    public static final String CACHE_AUTO_CONFIGURATION_INITIALIZER = "cache.autoconfiguration.initializer";
+    private static final Logger logger = LoggerGenerator.logger(CacheAutoConfigurationInitializer.class);
 
     @Configuration
     public static class BaseCacheConf extends CachingConfigurerSupport {
 
-        private Logger logger = LoggerGenerator.logger(BaseCacheConf.class);
-
         {
-            logger.info("BaseCacheConf 初始化默认配置...");
+            logger.info(AutoConfigurationInitializer.autoconfigurationInfo("Cache"));
         }
 
         private final CacheProperties cacheProperties;

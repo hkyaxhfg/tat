@@ -9,12 +9,18 @@ package org.hkyaxhfg.tat.autoconfiguration;
 public enum AutoConfigurationProperty {
 
     ENUM("enabled", false),
-    SPRINGFOX("enabled", true)
+    SPRINGFOX("enabled", true),
+    AMQP_PROVIDER("enabled", false),
+    AMQP_CONSUMER("enabled", false),
     ;
 
     public static final String ENUM_MAIN_KEY = "hkyaxhfg.tat.enum";
 
     public static final String SPRINGFOX_MAIN_KEY = "hkyaxhfg.tat.springfox";
+
+    public static final String AMQP_PROVIDER_MAIN_KEY = "hkyaxhfg.tat.amqp-provider-def";
+
+    public static final String AMQP_CONSUMER_MAIN_KEY = "hkyaxhfg.tat.amqp-consumer-def";
 
     private final String enabledKey;
 

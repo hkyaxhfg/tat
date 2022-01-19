@@ -21,24 +21,24 @@ public abstract class JDKDynamicProxy<I> {
     /**
      * 被代理的对象.
      */
-    private I target;
+    private final I target;
 
     /**
      * 被代理的对象的字节码.
      */
-    private Class<I> targetClass;
+    private final Class<I> targetClass;
 
     /**
      * 代理对象.
      */
-    private I proxy;
+    private final I proxy;
 
     /**
      * 构造函数, 需要提供被代理的对象, 前置和后置都可以为空.
      *
      * @param target 被代理的对象.
      */
-    public JDKDynamicProxy(I target) {
+    protected JDKDynamicProxy(I target) {
         this.target = target;
         this.targetClass = Unaware.castUnaware(this.target.getClass());
         this.proxy = newProxy();

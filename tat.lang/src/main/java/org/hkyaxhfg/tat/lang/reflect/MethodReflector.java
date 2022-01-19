@@ -21,17 +21,17 @@ public class MethodReflector implements Reflector {
     /**
      * 目标class.
      */
-    private Class<?> clazz;
+    private final Class<?> clazz;
 
     /**
      * 方法名称.
      */
-    private String methodName;
+    private final String methodName;
 
     /**
      * 方法参数类型列表.
      */
-    private Class<?>[] methodParameterTypes;
+    private final Class<?>[] methodParameterTypes;
 
     /**
      * 方法.

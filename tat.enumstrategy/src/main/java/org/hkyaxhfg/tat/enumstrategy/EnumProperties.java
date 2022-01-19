@@ -15,7 +15,7 @@ public class EnumProperties {
     /**
      * 是否启动枚举相关组件, 默认为false.
      */
-    private boolean enabled = false;
+    private boolean enabled = AutoConfigurationProperty.ENUM.isDefaultValue();
     /**
      * 枚举所在的包名, 多个包名用 [,] 隔开.
      */

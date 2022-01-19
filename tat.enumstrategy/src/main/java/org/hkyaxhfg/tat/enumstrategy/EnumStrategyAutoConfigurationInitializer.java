@@ -8,7 +8,6 @@ import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
 import org.slf4j.Logger;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,7 +19,6 @@ import org.springframework.context.annotation.Configuration;
  * @author: wjf
  * @date: 2022/1/11
  */
-@ConfigurationProperties(EnumStrategyAutoConfigurationInitializer.ENUM_STRATEGY_AUTO_CONFIGURATION_INITIALIZER)
 @Configuration
 @ComponentScan(
         basePackages = {
@@ -31,21 +29,19 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(EnumProperties.class)
 public class EnumStrategyAutoConfigurationInitializer implements AutoConfigurationInitializer {
 
-    public static final String ENUM_STRATEGY_AUTO_CONFIGURATION_INITIALIZER = "enumstrategy.autoconfiguration.initializer";
-
-    private static final Logger logger = LoggerGenerator.logger(ENUM_STRATEGY_AUTO_CONFIGURATION_INITIALIZER);
+    private static final Logger logger = LoggerGenerator.logger(EnumStrategyAutoConfigurationInitializer.class);
 
     @Bean
     @ConditionalOnMissingBean(EnumContainer.class)
     public EnumContainer enumContainer(EnumProperties enumProperties) {
-        logger.info("EnumContainer 初始化默认配置...");
+        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("EnumContainer"));
         return new DefaultEnumContainer(enumProperties);
     }
 
     @Bean
     @ConditionalOnMissingBean(JSONProcessor.class)
     public JSONProcessor jsonProcessor() {
-        logger.info("JSONProcessor 初始化默认配置...");
+        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("JSONProcessor"));
         return new JSONProcessor(
                 gsonBuilder -> {
                     gsonBuilder
