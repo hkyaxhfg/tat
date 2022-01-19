@@ -50,4 +50,149 @@ public class AmqpProviderDef {
         this.exchangeDefs = exchangeDefs;
     }
 
+    /**
+     * ExchangeDef: 定义遵循Amqp协议的交换机.
+     */
+    public static class ExchangeDef {
+        /**
+         * id.
+         */
+        private Long id;
+        /**
+         * 交换机名称.
+         */
+        private String exchangeName;
+        /**
+         * 交换机类型.
+         */
+        private String exchangeType;
+        /**
+         * 是否持久.
+         */
+        private Boolean durable;
+        /**
+         * 交换机描述.
+         */
+        private String exchangeDescription;
+        /**
+         * 队列定义.
+         */
+        private List<QueueDef> queueDefs;
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public String getExchangeName() {
+            return exchangeName;
+        }
+
+        public void setExchangeName(String exchangeName) {
+            this.exchangeName = exchangeName;
+        }
+
+        public String getExchangeType() {
+            return exchangeType;
+        }
+
+        public void setExchangeType(String exchangeType) {
+            this.exchangeType = exchangeType;
+        }
+
+        public Boolean getDurable() {
+            return durable;
+        }
+
+        public void setDurable(Boolean durable) {
+            this.durable = durable;
+        }
+
+        public String getExchangeDescription() {
+            return exchangeDescription;
+        }
+
+        public void setExchangeDescription(String exchangeDescription) {
+            this.exchangeDescription = exchangeDescription;
+        }
+
+        public List<QueueDef> getQueueDefs() {
+            return queueDefs;
+        }
+
+        public void setQueueDefs(List<QueueDef> queueDefs) {
+            this.queueDefs = queueDefs;
+        }
+
+        /**
+         * QueueDef: 定义遵循Amqp协议的队列.
+         */
+        public static class QueueDef {
+            /**
+             * id.
+             */
+            private Long id;
+            /**
+             * 队列名称.
+             */
+            private String queueName;
+            /**
+             * 是否持久.
+             */
+            private Boolean durable;
+            /**
+             * 队列名称.
+             */
+            private String queueDescription;
+            /**
+             * 路由key.
+             */
+            private String routingKey;
+
+            public Long getId() {
+                return id;
+            }
+
+            public void setId(Long id) {
+                this.id = id;
+            }
+
+            public String getQueueName() {
+                return queueName;
+            }
+
+            public void setQueueName(String queueName) {
+                this.queueName = queueName;
+            }
+
+            public Boolean getDurable() {
+                return durable;
+            }
+
+            public void setDurable(Boolean durable) {
+                this.durable = durable;
+            }
+
+            public String getQueueDescription() {
+                return queueDescription;
+            }
+
+            public void setQueueDescription(String queueDescription) {
+                this.queueDescription = queueDescription;
+            }
+
+            public String getRoutingKey() {
+                return routingKey;
+            }
+
+            public void setRoutingKey(String routingKey) {
+                this.routingKey = routingKey;
+            }
+        }
+
+    }
+
 }

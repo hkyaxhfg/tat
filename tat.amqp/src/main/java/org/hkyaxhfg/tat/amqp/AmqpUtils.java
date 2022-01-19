@@ -33,12 +33,12 @@ public final class AmqpUtils {
 
     public static void init(AmqpProviderDef amqpDef, AmqpAdmin amqpAdmin) {
         logger.info(String.format("AMQP配置 ---> %s 初始化开始！", amqpDef.getAmqpDescription()));
-        List<ExchangeDef> exchangeDefs = amqpDef.getExchangeDefs();
+        List<AmqpProviderDef.ExchangeDef> exchangeDefs = amqpDef.getExchangeDefs();
         initExchanges(exchangeDefs, amqpAdmin);
         logger.info(String.format("AMQP配置 ---> %s 初始化完成！", amqpDef.getAmqpDescription()));
     }
 
-    private static void initExchanges(List<ExchangeDef> exchangeDefs, AmqpAdmin amqpAdmin) {
+    private static void initExchanges(List<AmqpProviderDef.ExchangeDef> exchangeDefs, AmqpAdmin amqpAdmin) {
         if (CollectionUtils.isNotEmpty(exchangeDefs)) {
             exchangeDefs.forEach(exchangeDef -> {
                 Exchange exchange = null;
@@ -59,7 +59,7 @@ public final class AmqpUtils {
         }
     }
 
-    private static void initQueue(Exchange exchange, List<QueueDef> queueDefs, AmqpAdmin amqpAdmin) {
+    private static void initQueue(Exchange exchange, List<AmqpProviderDef.ExchangeDef.QueueDef> queueDefs, AmqpAdmin amqpAdmin) {
         if (CollectionUtils.isNotEmpty(queueDefs)) {
             queueDefs.forEach(queueDef -> {
                 Queue queue = new Queue(queueDef.getQueueName(), queueDef.getDurable(), false, false);
