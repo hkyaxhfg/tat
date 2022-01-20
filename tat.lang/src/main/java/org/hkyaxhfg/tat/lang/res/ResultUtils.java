@@ -47,7 +47,7 @@ public class ResultUtils {
      * @param pageNum 当前页.
      * @param pageSize 分页条数.
      */
-    public void startPage(int pageNum, int pageSize) {
+    public static void startPage(int pageNum, int pageSize) {
         PageMethod.startPage(pageNum, pageSize);
     }
 
