@@ -2,11 +2,13 @@ package org.hkyaxhfg.tat.lang.res;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.page.PageMethod;
+import org.apache.commons.collections4.CollectionUtils;
 import org.hkyaxhfg.tat.lang.util.Unaware;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 /**
@@ -39,7 +41,7 @@ public class ResultUtils {
      * 设置分页.
      */
     public void startPage() {
-        PageMethod.startPage(defaultPageNum, defaultPageSize);
+        startPage(defaultPageNum, defaultPageSize);
     }
 
     /**
@@ -80,6 +82,30 @@ public class ResultUtils {
      */
     public static <T, R> Result<List<R>, Success<List<R>>> listToResult(List<T> list, Function<T, R> function) {
         return new ListSuccess<>(transform(list, function));
+    }
+
+    /**
+     * list转换为Result.
+     * @param list 源.
+     * @param function 由源list得到一组额外参数的逻辑.
+     * @param biFunction 由源list和额外参数共同得到R的逻辑.
+     * @param <T> T.
+     * @param <U> U.
+     * @param <R> R.
+     * @return Result<List<R>, Success<List<R>>>.
+     */
+    public static <T, U, R> Result<List<R>, Success<List<R>>> listToResult(List<T> list, Function<List<T>, U> function, BiFunction<T, U, R> biFunction) {
+        List<R> result = initList(list);
+
+        if (CollectionUtils.isEmpty(list)) {
+            return success(result);
+        }
+
+        U u = function.apply(list);
+
+        list.forEach(element -> result.add(biFunction.apply(element, u)));
+
+        return success(result);
     }
 
     /**
