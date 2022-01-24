@@ -20,6 +20,7 @@
         <module>tat.amqp</module>
         <module>tat.validation</module>
         <module>tat.cloud</module>
+        <module>tat.feign</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -116,6 +117,11 @@
             </dependency>
             <dependency>
                 <groupId>org.hkyaxhfg.tat</groupId>
+                <artifactId>tat.feign</artifactId>
+                <version>${subproject.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hkyaxhfg.tat</groupId>
                 <artifactId>tat.autoconfiguration</artifactId>
                 <version>${subproject.version}</version>
             </dependency>
@@ -148,7 +154,19 @@
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${springfox.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos-client.version}</version>
+            </dependency>
             <!-- import -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2021.0.0</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
@@ -168,11 +186,6 @@
                 </exclusions>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.nacos</groupId>
-                <artifactId>nacos-client</artifactId>
-                <version>${nacos-client.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
