@@ -17,7 +17,7 @@ public class FieldReflector implements Reflector {
     /**
      * 目标class.
      */
-    private Class<?> clazz;
+    private final Class<?> clazz;
 
     /**
      * 字段.
@@ -27,7 +27,7 @@ public class FieldReflector implements Reflector {
     /**
      * 字段名称.
      */
-    private String fieldName;
+    private final String fieldName;
 
     /**
      * 构造方法.

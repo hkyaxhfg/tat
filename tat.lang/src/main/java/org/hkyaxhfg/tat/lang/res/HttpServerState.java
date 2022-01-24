@@ -11,6 +11,7 @@ public enum HttpServerState {
     Ok(200, "OK", "操作成功"),
     Bad_Request(400, "Bad Request", "请求语法错误"),
     Unauthorized(401, "Unauthorized", "用户未进行身份认证"),
+    OAuth2_Unauthorized(4010, "OAuth2 Unauthorized", "OAuth2 鉴权失败"),
     Forbidden(403, "Forbidden", "服务器拒绝执行此请求"),
     Not_Found(404, "Not Found", "服务器找不到资源"),
     Method_Not_Allowed(405, "Method Not Allowed", "请求中的方法被禁止"),

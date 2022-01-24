@@ -59,11 +59,11 @@ public class MvcBeanContext implements BeanDefinitionRegistryPostProcessor {
         return MvcBeanContext.beanFactory.containsBean(beanName);
     }
 
-    public static  <T> T getBean(Class<T> beanClass) {
+    public static <T> T getBean(Class<T> beanClass) {
         return MvcBeanContext.beanFactory.getBean(beanClass);
     }
 
-    public static  <T> T getBean(String beanName, Class<T> beanClass) {
+    public static <T> T getBean(String beanName, Class<T> beanClass) {
         return MvcBeanContext.beanFactory.getBean(beanName, beanClass);
     }
 
