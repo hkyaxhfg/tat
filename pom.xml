@@ -40,6 +40,8 @@
         <!-- spring相关 -->
         <spring-boot-maven-plugin.version>2.6.2</spring-boot-maven-plugin.version>
         <springfox.version>3.0.0</springfox.version>
+        <spring-cloud-alibaba-dependencies.version>2.2.6.RELEASE</spring-cloud-alibaba-dependencies.version>
+        <nacos-client.version>2.0.4</nacos-client.version>
 
         <!-- apache -->
         <commons-collections4.version>4.4</commons-collections4.version>
@@ -85,6 +87,11 @@
             <dependency>
                 <groupId>org.hkyaxhfg.tat</groupId>
                 <artifactId>tat.boot</artifactId>
+                <version>${subproject.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hkyaxhfg.tat</groupId>
+                <artifactId>tat.cloud</artifactId>
                 <version>${subproject.version}</version>
             </dependency>
             <dependency>
@@ -141,12 +148,31 @@
                 <artifactId>springfox-boot-starter</artifactId>
                 <version>${springfox.version}</version>
             </dependency>
+            <!-- import -->
             <dependency>
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper-spring-boot-starter</artifactId>
                 <version>${pagehelper-spring-boot-starter.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba-dependencies.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.alibaba.nacos</groupId>
+                        <artifactId>nacos-client</artifactId>
+                    </exclusion>
+                </exclusions>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.nacos</groupId>
+                <artifactId>nacos-client</artifactId>
+                <version>${nacos-client.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

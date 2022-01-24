@@ -12,6 +12,7 @@ public enum AutoConfigurationProperty {
     SPRINGFOX("enabled", true),
     AMQP_PROVIDER("enabled", false),
     AMQP_CONSUMER("enabled", false),
+    CLOUD("enabled", true),
     ;
 
     public static final String ENUM_MAIN_KEY = "hkyaxhfg.tat.enum";
@@ -21,6 +22,8 @@ public enum AutoConfigurationProperty {
     public static final String AMQP_PROVIDER_MAIN_KEY = "hkyaxhfg.tat.amqp-provider-def";
 
     public static final String AMQP_CONSUMER_MAIN_KEY = "hkyaxhfg.tat.amqp-consumer-def";
+
+    public static final String CLOUD_MAIN_KEY = "spring.cloud.nacos.discovery";
 
     private final String enabledKey;
 
