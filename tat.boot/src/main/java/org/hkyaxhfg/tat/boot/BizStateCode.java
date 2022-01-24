@@ -1,4 +1,4 @@
-package org.hkyaxhfg.tat.mvcstarter;
+package org.hkyaxhfg.tat.boot;
 
 /**
  * 业务编码code.

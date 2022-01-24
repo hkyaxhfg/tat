@@ -1,4 +1,4 @@
-package org.hkyaxhfg.tat.mvcstarter;
+package org.hkyaxhfg.tat.boot;
 
 import org.hkyaxhfg.tat.lang.res.Failure;
 import org.hkyaxhfg.tat.lang.res.HttpServerState;

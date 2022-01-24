@@ -1,4 +1,4 @@
-package org.hkyaxhfg.tat.mvcstarter;
+package org.hkyaxhfg.tat.boot;
 
 import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan(
         basePackages = {
-                "org.hkyaxhfg.tat.mvcstarter"
+                "org.hkyaxhfg.tat.boot"
         }
 )
 public class MvcAutoConfigurationInitializer implements AutoConfigurationInitializer {}

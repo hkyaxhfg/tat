@@ -4,4 +4,4 @@
  *
  * mvc包.
  */
-package org.hkyaxhfg.tat.mvcstarter;
+package org.hkyaxhfg.tat.boot;

@@ -22,7 +22,7 @@
         </dependency>
         <dependency>
             <groupId>org.hkyaxhfg.tat</groupId>
-            <artifactId>tat.autoconfigution</artifactId>
+            <artifactId>tat.autoconfiguration</artifactId>
         </dependency>
     </dependencies>
 

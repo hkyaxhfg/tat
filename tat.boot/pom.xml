@@ -9,10 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>tat.snowflake</artifactId>
+    <artifactId>tat.boot</artifactId>
 
     <dependencies>
-        <!--compile-->
         <dependency>
             <groupId>org.hkyaxhfg.tat</groupId>
             <artifactId>tat.lang</artifactId>
@@ -21,11 +20,9 @@
             <groupId>org.hkyaxhfg.tat</groupId>
             <artifactId>tat.autoconfiguration</artifactId>
         </dependency>
-        <!--test-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
 

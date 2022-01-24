@@ -11,14 +11,15 @@
         <module>tat.lang</module>
         <module>tat.monitoring</module>
         <module>tat.snowflake</module>
-        <module>tat.autoconfigution</module>
+        <module>tat.autoconfiguration</module>
         <module>tat.enumstrategy</module>
         <module>tat.auth</module>
         <module>tat.springfox</module>
-        <module>tat.mvcstarter</module>
+        <module>tat.boot</module>
         <module>tat.cache</module>
         <module>tat.amqp</module>
         <module>tat.validation</module>
+        <module>tat.cloud</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -83,7 +84,7 @@
             </dependency>
             <dependency>
                 <groupId>org.hkyaxhfg.tat</groupId>
-                <artifactId>tat.mvcstarter</artifactId>
+                <artifactId>tat.boot</artifactId>
                 <version>${subproject.version}</version>
             </dependency>
             <dependency>
@@ -108,7 +109,7 @@
             </dependency>
             <dependency>
                 <groupId>org.hkyaxhfg.tat</groupId>
-                <artifactId>tat.autoconfigution</artifactId>
+                <artifactId>tat.autoconfiguration</artifactId>
                 <version>${subproject.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
