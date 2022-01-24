@@ -28,7 +28,7 @@ public class CloudAutoConfigurationInitializer implements AutoConfigurationIniti
     private static final Logger logger = LoggerGenerator.logger(CloudAutoConfigurationInitializer.class);
 
     {
-        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("Cloud"));
+        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("Spring-Cloud"));
     }
 
 }
