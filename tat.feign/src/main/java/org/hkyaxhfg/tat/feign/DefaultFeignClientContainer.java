@@ -4,6 +4,7 @@ import feign.Client;
 import feign.Feign;
 import feign.codec.Decoder;
 import feign.codec.Encoder;
+import org.apache.commons.collections4.CollectionUtils;
 import org.hkyaxhfg.tat.lang.util.Container;
 import org.hkyaxhfg.tat.lang.util.Unaware;
 import org.springframework.cloud.openfeign.support.SpringMvcContract;
@@ -28,10 +29,14 @@ public class DefaultFeignClientContainer implements FeignClientContainer {
 
     private final Decoder decoder;
 
-    public DefaultFeignClientContainer(Client client, Encoder encoder, Decoder decoder) {
+    private final FeignProperties feignProperties;
+
+    public DefaultFeignClientContainer(Client client, Encoder encoder, Decoder decoder, FeignProperties feignProperties) {
         this.client = client;
         this.encoder = encoder;
         this.decoder = decoder;
+        this.feignProperties = feignProperties;
+        loadEnvFeignClient();
     }
 
     @Override
@@ -51,13 +56,11 @@ public class DefaultFeignClientContainer implements FeignClientContainer {
     @Override
     public <T> T get(Class<T> feignClientClass) {
         Container<T> container = new Container<>();
-        feignClientMap.forEach((k, v) -> {
-            v.forEach(feignClient -> {
-                if (feignClient.getFeignClientClass() == feignClientClass) {
-                    container.put(Unaware.castUnaware(feignClient.getFeignClientTarget()));
-                }
-            });
-        });
+        feignClientMap.forEach((k, v) -> v.forEach(feignClient -> {
+            if (feignClient.getFeignClientClass() == feignClientClass) {
+                container.put(Unaware.castUnaware(feignClient.getFeignClientTarget()));
+            }
+        }));
         return container.get();
     }
 
@@ -78,6 +81,17 @@ public class DefaultFeignClientContainer implements FeignClientContainer {
         builder.append(":").append("//");
         builder.append(feignClient.getApplicationName()).append(feignClient.getContextPath());
         return builder.toString();
+    }
+
+    void loadEnvFeignClient() {
+        if (!this.feignProperties.isEnabled()) {
+            return;
+        }
+        List<FeignProperties.FeignClient<?>> feignClients = this.feignProperties.getFeignClients();
+        if (CollectionUtils.isEmpty(feignClients)) {
+            return;
+        }
+        feignClients.forEach(this::put);
     }
 
 }
