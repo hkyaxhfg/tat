@@ -18,7 +18,7 @@ import java.util.Objects;
  */
 public class RedisLock implements CacheBasedLock {
 
-    private static Logger logger = LoggerGenerator.logger(RedisLock.class);
+    private static final Logger logger = LoggerGenerator.logger(RedisLock.class);
 
     private final RedisTemplate<Object, Object> redisTemplate;
     private static final int DEFAULT_PAUSE_STEP_MILLIS = 100;
@@ -46,6 +46,7 @@ public class RedisLock implements CacheBasedLock {
     }
 
     @Override
+    @SuppressWarnings("all")
     public synchronized boolean lock() throws InterruptedException {
         /*
          *  cas: 比较并交换思想.
@@ -70,7 +71,7 @@ public class RedisLock implements CacheBasedLock {
             }
 
             timeout -= DEFAULT_PAUSE_STEP_MILLIS;
-            this.wait(DEFAULT_PAUSE_STEP_MILLIS);
+            Thread.sleep(DEFAULT_PAUSE_STEP_MILLIS);
         }
 
         return false;
