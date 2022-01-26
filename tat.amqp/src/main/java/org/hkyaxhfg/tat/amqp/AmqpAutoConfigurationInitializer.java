@@ -2,10 +2,7 @@ package org.hkyaxhfg.tat.amqp;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationProperty;
-import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
-import org.slf4j.Logger;
+import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.springframework.amqp.core.AmqpAdmin;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +27,11 @@ import java.util.List;
                 "org.hkyaxhfg.tat.amqp"
         }
 )
-public class AmqpAutoConfigurationInitializer implements AutoConfigurationInitializer {
-
-    private static final Logger logger = LoggerGenerator.logger(AmqpAutoConfigurationInitializer.class);
+public class AmqpAutoConfigurationInitializer {
 
     @Configuration
     @EnableConfigurationProperties(AmqpProviderDef.class)
-    @ConditionalOnProperty(prefix = AutoConfigurationProperty.AMQP_PROVIDER_MAIN_KEY, name = "enabled", havingValue = "true")
+    @ConditionalOnProperty(prefix = AmqpProviderDef.PREFIX, name = "enabled", havingValue = "true")
     public static class AmqpProviderConf {
 
         private final AmqpProviderDef amqpProviderDef;
@@ -53,7 +48,7 @@ public class AmqpAutoConfigurationInitializer implements AutoConfigurationInitia
         public void init() {
             if (amqpProviderDef.isEnabled()) {
                 AmqpUtils.init(amqpProviderDef, amqpAdmin);
-                logger.info("AMQP-PROVIDER: {} 初始化完成...", amqpProviderDef.getAmqpDescription());
+                AutoConfigurationLogger.autoconfigurationInfo(String.format("AMQP-PROVIDER: %s", amqpProviderDef.getAmqpDescription()));
             }
         }
 
@@ -61,7 +56,7 @@ public class AmqpAutoConfigurationInitializer implements AutoConfigurationInitia
 
     @Configuration
     @EnableConfigurationProperties(AmqpConsumerDef.class)
-    @ConditionalOnProperty(prefix = AutoConfigurationProperty.AMQP_CONSUMER_MAIN_KEY, name = "enabled", havingValue = "true")
+    @ConditionalOnProperty(prefix = AmqpConsumerDef.PREFIX, name = "enabled", havingValue = "true")
     public static class AmqpConsumerConf {
 
         private final AmqpConsumerDef amqpConsumerDef;
@@ -97,7 +92,7 @@ public class AmqpAutoConfigurationInitializer implements AutoConfigurationInitia
                     });
                 }
 
-                logger.info("AMQP-CONSUMER: {} 初始化完成...", amqpConsumerDef.getAmqpDescription());
+                AutoConfigurationLogger.autoconfigurationInfo(String.format("AMQP-CONSUMER: %s", amqpConsumerDef.getAmqpDescription()));
             }
         }
 

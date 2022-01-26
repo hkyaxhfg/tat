@@ -1,8 +1,6 @@
 package org.hkyaxhfg.tat.cloud;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
-import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
-import org.slf4j.Logger;
+import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,12 +18,10 @@ import org.springframework.context.annotation.Configuration;
         }
 )
 @EnableDiscoveryClient
-public class CloudAutoConfigurationInitializer implements AutoConfigurationInitializer {
+public class CloudAutoConfigurationInitializer {
 
-    private static final Logger logger = LoggerGenerator.logger(CloudAutoConfigurationInitializer.class);
-
-    {
-        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("Spring-Cloud"));
+    public CloudAutoConfigurationInitializer() {
+        AutoConfigurationLogger.autoconfigurationInfo("Spring-Cloud");
     }
 
 }

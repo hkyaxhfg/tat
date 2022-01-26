@@ -1,6 +1,6 @@
 package org.hkyaxhfg.tat.boot;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
+import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -16,4 +16,10 @@ import org.springframework.context.annotation.Configuration;
                 "org.hkyaxhfg.tat.boot"
         }
 )
-public class MvcAutoConfigurationInitializer implements AutoConfigurationInitializer {}
+public class MvcAutoConfigurationInitializer {
+
+    public MvcAutoConfigurationInitializer() {
+        AutoConfigurationLogger.autoconfigurationInfo("Mvc");
+    }
+
+}

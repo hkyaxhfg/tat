@@ -1,6 +1,6 @@
 package org.hkyaxhfg.tat.auth;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
+import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -14,5 +14,10 @@ import org.springframework.context.annotation.Configuration;
                 "org.hkyaxhfg.tat.auth"
         }
 )
-public class AuthAutoConfigurationInitializer implements AutoConfigurationInitializer {
+public class AuthAutoConfigurationInitializer {
+
+    public AuthAutoConfigurationInitializer() {
+        AutoConfigurationLogger.autoconfigurationInfo("Auth");
+    }
+
 }

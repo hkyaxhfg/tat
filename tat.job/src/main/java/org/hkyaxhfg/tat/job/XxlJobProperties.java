@@ -1,6 +1,5 @@
 package org.hkyaxhfg.tat.job;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -9,12 +8,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author: wjf
  * @date: 2022/1/26
  */
-@ConfigurationProperties(AutoConfigurationProperty.JOB_MAIN_KEY)
+@ConfigurationProperties(XxlJobProperties.PREFIX)
 public class XxlJobProperties {
+
+    public static final String PREFIX = "hkyaxhfg.tat.job";
+
     /**
      * 是否启动xxl-job自动配置, 默认为true.
      */
-    private boolean enabled = AutoConfigurationProperty.JOB.isDefaultValue();
+    private boolean enabled = true;
     /**
      * xxl-job的admin后台地址.
      */

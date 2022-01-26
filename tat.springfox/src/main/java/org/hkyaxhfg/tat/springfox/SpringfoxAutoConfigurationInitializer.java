@@ -1,9 +1,6 @@
 package org.hkyaxhfg.tat.springfox;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationProperty;
-import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
-import org.slf4j.Logger;
+import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -27,24 +24,22 @@ import springfox.documentation.spring.web.plugins.Docket;
                 "org.hkyaxhfg.tat.springfox"
         }
 )
-@ConditionalOnProperty(prefix = AutoConfigurationProperty.SPRINGFOX_MAIN_KEY, name = "enabled", havingValue = "true")
+@ConditionalOnProperty(prefix = SpringfoxProperties.PREFIX, name = "enabled", havingValue = "true")
 @EnableOpenApi
 @EnableConfigurationProperties(SpringfoxProperties.class)
-public class SpringfoxAutoConfigurationInitializer implements AutoConfigurationInitializer {
-
-    private static final Logger logger = LoggerGenerator.logger(SpringfoxAutoConfigurationInitializer.class);
+public class SpringfoxAutoConfigurationInitializer {
 
     @Bean
     @ConditionalOnMissingBean(SpringfoxDefiner.class)
     public SpringfoxDefiner springfoxDefiner(SpringfoxProperties springfoxProperties, Environment environment) {
-        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("SpringfoxDefiner"));
+        AutoConfigurationLogger.autoconfigurationInfo("SpringfoxDefiner");
         return new DefaultSpringfoxDefiner(springfoxProperties, environment);
     }
 
     @Bean
     @ConditionalOnBean(SpringfoxDefiner.class)
     public Docket docket(SpringfoxDefiner springfoxDefiner) {
-        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("Springfox"));
+        AutoConfigurationLogger.autoconfigurationInfo("Springfox");
         return springfoxDefiner.definition();
     }
 }

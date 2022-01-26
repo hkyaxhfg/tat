@@ -1,8 +1,6 @@
 package org.hkyaxhfg.tat.monitoring;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
-import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
-import org.slf4j.Logger;
+import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,14 +18,12 @@ import org.springframework.context.annotation.Configuration;
                 "org.hkyaxhfg.tat.monitoring"
         }
 )
-public class MonitoringAutoConfigurationInitializer implements AutoConfigurationInitializer {
-
-    private static final Logger logger = LoggerGenerator.logger(MonitoringAutoConfigurationInitializer.class);
+public class MonitoringAutoConfigurationInitializer {
 
     @Bean
     @ConditionalOnMissingBean(MonitoringAnnotatedResolver.class)
     public MonitoringAnnotatedResolver monitoringAnnotatedResolver() {
-        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("MonitoringAnnotatedResolver"));
+        AutoConfigurationLogger.autoconfigurationInfo("MonitoringAnnotatedResolver");
         return new MonitoringAnnotatedResolver(new Monitoring.DefaultMonitoringLogic());
     }
 }

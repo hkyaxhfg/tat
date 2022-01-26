@@ -1,7 +1,6 @@
 package org.hkyaxhfg.tat.feign;
 
 import feign.RequestInterceptor;
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.Collections;
@@ -13,12 +12,15 @@ import java.util.List;
  * @author: wjf
  * @date: 2022/1/24
  */
-@ConfigurationProperties(AutoConfigurationProperty.OPEN_FEIGN_MAIN_KEY)
+@ConfigurationProperties(FeignProperties.PREFIX)
 public class FeignProperties {
+
+    public static final String PREFIX = "hkyaxhfg.tat.feign";
+
     /**
      * 是否启动feign功能, 默认为true.
      */
-    private boolean enabled = AutoConfigurationProperty.OPEN_FEIGN.isDefaultValue();
+    private boolean enabled = true;
     /**
      * 配置的feign-client列表.
      */

@@ -1,6 +1,6 @@
 package org.hkyaxhfg.tat.boot;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
+import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
 import org.slf4j.Logger;
 import org.springframework.beans.BeansException;
@@ -25,10 +25,6 @@ public class MvcBeanContext implements BeanDefinitionRegistryPostProcessor {
     private static BeanDefinitionRegistry registry;
 
     private static ConfigurableListableBeanFactory beanFactory;
-
-    {
-        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("MvcBeanContext"));
-    }
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {

@@ -1,6 +1,5 @@
 package org.hkyaxhfg.tat.amqp;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
@@ -11,12 +10,15 @@ import java.util.List;
  * @author: wjf
  * @date: 2022/1/19
  */
-@ConfigurationProperties(prefix = AutoConfigurationProperty.AMQP_CONSUMER_MAIN_KEY)
+@ConfigurationProperties(prefix = AmqpConsumerDef.PREFIX)
 public class AmqpConsumerDef {
+
+    public static final String PREFIX = "hkyaxhfg.tat.amqp-consumer-def";
+
     /**
      * 是否启动Amqp自动配置.
      */
-    private boolean enabled = AutoConfigurationProperty.AMQP_CONSUMER.isDefaultValue();
+    private boolean enabled = false;
     /**
      * amqp描述.
      */

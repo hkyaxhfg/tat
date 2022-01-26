@@ -1,10 +1,7 @@
 package org.hkyaxhfg.tat.job;
 
 import com.xxl.job.core.executor.impl.XxlJobSpringExecutor;
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationProperty;
-import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
-import org.slf4j.Logger;
+import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -24,10 +21,8 @@ import org.springframework.context.annotation.Configuration;
         }
 )
 @EnableConfigurationProperties(XxlJobProperties.class)
-@ConditionalOnProperty(prefix = AutoConfigurationProperty.JOB_MAIN_KEY, name = "enabled", havingValue = "true")
-public class JobAutoConfigurationInitializer implements AutoConfigurationInitializer {
-
-    private static final Logger logger = LoggerGenerator.logger(JobAutoConfigurationInitializer.class);
+@ConditionalOnProperty(prefix = XxlJobProperties.PREFIX, name = "enabled", havingValue = "true")
+public class JobAutoConfigurationInitializer {
 
     @Bean
     public XxlJobSpringExecutor xxlJobSpringExecutor(XxlJobProperties xxlJobProperties) {
@@ -40,7 +35,7 @@ public class JobAutoConfigurationInitializer implements AutoConfigurationInitial
         xxlJobSpringExecutor.setLogPath(xxlJobProperties.getLogPath());
         xxlJobSpringExecutor.setLogRetentionDays(xxlJobProperties.getLogRetentionDays());
 
-        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("XXL-Job"));
+        AutoConfigurationLogger.autoconfigurationInfo("Xxl-Job");
         return xxlJobSpringExecutor;
     }
 

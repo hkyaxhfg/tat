@@ -1,10 +1,8 @@
 package org.hkyaxhfg.tat.cache;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
+import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.hkyaxhfg.tat.cache.redis.RedisCacheService;
-import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
 import org.hkyaxhfg.tat.lang.util.TatException;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.cache.CacheProperties;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -37,21 +35,19 @@ import java.util.Map;
         }
 )
 @EnableConfigurationProperties(CacheProperties.class)
-public class CacheAutoConfigurationInitializer implements AutoConfigurationInitializer {
+public class CacheAutoConfigurationInitializer {
 
-    private static final Logger logger = LoggerGenerator.logger(CacheAutoConfigurationInitializer.class);
+    public CacheAutoConfigurationInitializer() {
+        AutoConfigurationLogger.autoconfigurationInfo("Cache");
+    }
 
     @Configuration
-    public static class BaseCacheConf extends CachingConfigurerSupport {
-
-        {
-            logger.info(AutoConfigurationInitializer.autoconfigurationInfo("Cache"));
-        }
+    public static class RedisCacheConf extends CachingConfigurerSupport {
 
         private final CacheProperties cacheProperties;
 
         @Autowired
-        public BaseCacheConf(CacheProperties cacheProperties) {
+        public RedisCacheConf(CacheProperties cacheProperties) {
             this.cacheProperties = cacheProperties;
         }
 

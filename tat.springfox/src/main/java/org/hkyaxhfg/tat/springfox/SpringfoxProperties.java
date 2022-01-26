@@ -1,6 +1,5 @@
 package org.hkyaxhfg.tat.springfox;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import springfox.documentation.service.ParameterType;
 
@@ -13,12 +12,15 @@ import java.util.List;
  * @author: wjf
  * @date: 2022/1/12
  */
-@ConfigurationProperties(AutoConfigurationProperty.SPRINGFOX_MAIN_KEY)
+@ConfigurationProperties(SpringfoxProperties.PREFIX)
 public class SpringfoxProperties {
+
+    public static final String PREFIX = "hkyaxhfg.tat.springfox";
+
     /**
      * 是否启动文档, 默认为true.
      */
-    private boolean enabled = AutoConfigurationProperty.SPRINGFOX.isDefaultValue();
+    private boolean enabled = true;
     /**
      * 文档标题, 默认为 ${spring.application.name}.
      */

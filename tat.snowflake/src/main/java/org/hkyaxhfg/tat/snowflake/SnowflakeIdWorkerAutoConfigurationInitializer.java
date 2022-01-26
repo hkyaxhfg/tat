@@ -1,8 +1,6 @@
 package org.hkyaxhfg.tat.snowflake;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
-import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
-import org.slf4j.Logger;
+import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,14 +18,12 @@ import org.springframework.context.annotation.Configuration;
                 "org.hkyaxhfg.tat.snowflake"
         }
 )
-public class SnowflakeIdWorkerAutoConfigurationInitializer implements AutoConfigurationInitializer {
-
-    private static final Logger logger = LoggerGenerator.logger(SnowflakeIdWorkerAutoConfigurationInitializer.class);
+public class SnowflakeIdWorkerAutoConfigurationInitializer {
 
     @Bean
     @ConditionalOnMissingBean(SnowflakeIdWorker.class)
     public SnowflakeIdWorker snowflakeIdWorker() {
-        logger.info(AutoConfigurationInitializer.autoconfigurationInfo("SnowflakeIdWorker"));
+        AutoConfigurationLogger.autoconfigurationInfo("SnowflakeIdWorker");
         return new SnowflakeIdWorker();
     }
 

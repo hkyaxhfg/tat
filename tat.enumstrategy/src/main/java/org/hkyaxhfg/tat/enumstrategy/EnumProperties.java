@@ -1,6 +1,5 @@
 package org.hkyaxhfg.tat.enumstrategy;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -9,13 +8,15 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @author: wjf
  * @date: 2022/1/11
  */
-@ConfigurationProperties(AutoConfigurationProperty.ENUM_MAIN_KEY)
+@ConfigurationProperties(EnumProperties.PREFIX)
 public class EnumProperties {
+
+    public static final String PREFIX = "hkyaxhfg.tat.enum";
 
     /**
      * 是否启动枚举相关组件, 默认为false.
      */
-    private boolean enabled = AutoConfigurationProperty.ENUM.isDefaultValue();
+    private boolean enabled = false;
     /**
      * 枚举所在的包名, 多个包名用 [,] 隔开.
      */

@@ -20,6 +20,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.hkyaxhfg.tat</groupId>
+            <artifactId>tat.lang</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

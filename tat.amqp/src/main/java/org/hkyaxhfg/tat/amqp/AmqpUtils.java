@@ -32,10 +32,10 @@ public final class AmqpUtils {
     private AmqpUtils() {}
 
     public static void init(AmqpProviderDef amqpDef, AmqpAdmin amqpAdmin) {
-        logger.info(String.format("AMQP配置 ---> %s 初始化开始！", amqpDef.getAmqpDescription()));
+        logger.info("AMQP配置 ---> {} 初始化开始！", amqpDef.getAmqpDescription());
         List<AmqpProviderDef.ExchangeDef> exchangeDefs = amqpDef.getExchangeDefs();
         initExchanges(exchangeDefs, amqpAdmin);
-        logger.info(String.format("AMQP配置 ---> %s 初始化完成！", amqpDef.getAmqpDescription()));
+        logger.info("AMQP配置 ---> {} 初始化完成！", amqpDef.getAmqpDescription());
     }
 
     private static void initExchanges(List<AmqpProviderDef.ExchangeDef> exchangeDefs, AmqpAdmin amqpAdmin) {
