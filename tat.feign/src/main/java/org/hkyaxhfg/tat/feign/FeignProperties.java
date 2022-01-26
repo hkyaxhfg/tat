@@ -18,7 +18,7 @@ public class FeignProperties {
     /**
      * 是否启动feign功能, 默认为true.
      */
-    private boolean enabled = true;
+    private boolean enabled = AutoConfigurationProperty.OPEN_FEIGN.isDefaultValue();
     /**
      * 配置的feign-client列表.
      */

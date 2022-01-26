@@ -21,6 +21,7 @@
         <module>tat.validation</module>
         <module>tat.cloud</module>
         <module>tat.feign</module>
+        <module>tat.job</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -52,6 +53,7 @@
         <!-- other -->
         <reflections.version>0.10.2</reflections.version>
         <pagehelper-spring-boot-starter.version>1.4.1</pagehelper-spring-boot-starter.version>
+        <xxl-job.version>2.3.0</xxl-job.version>
 
         <!-- 插件 -->
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -122,6 +124,11 @@
             </dependency>
             <dependency>
                 <groupId>org.hkyaxhfg.tat</groupId>
+                <artifactId>tat.job</artifactId>
+                <version>${subproject.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hkyaxhfg.tat</groupId>
                 <artifactId>tat.autoconfiguration</artifactId>
                 <version>${subproject.version}</version>
             </dependency>
@@ -158,6 +165,11 @@
                 <groupId>com.alibaba.nacos</groupId>
                 <artifactId>nacos-client</artifactId>
                 <version>${nacos-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.xuxueli</groupId>
+                <artifactId>xxl-job-core</artifactId>
+                <version>${xxl-job.version}</version>
             </dependency>
             <!-- import -->
             <dependency>
