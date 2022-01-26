@@ -35,7 +35,7 @@ public class MvcExceptionHandler {
             message = e.getMessage();
             state = e.getState();
         }
-        return ResultUtils.failure(state, message, e, "", "");
+        return ResultUtils.failure(state, message, e, message, message);
     }
 
     @ExceptionHandler({
@@ -64,38 +64,43 @@ public class MvcExceptionHandler {
         logger.error(HttpServerState.Internal_Server_Error.getCnMessage(), e);
 
         String message = HttpServerState.Internal_Server_Error.getCnMessage();
+        String originate = HttpServerState.Internal_Server_Error.getCnMessage();
         int state = HttpServerState.Internal_Server_Error.getState();
         if (e != null) {
             message = e.getMessage();
 
             if (e instanceof IllegalArgumentException) {
                 state = HttpServerState.Bad_Request.getState();
+                originate = HttpServerState.Bad_Request.getCnMessage();
             } else if (e instanceof TypeMismatchException) {
                 TypeMismatchException te = (TypeMismatchException) e;
                 message = String.format("参数类型不匹配, 参数 '%s' 类型应该为: %s", te.getPropertyName(), te.getRequiredType());
                 logger.error(message);
                 state = HttpServerState.Bad_Request.getState();
+                originate = HttpServerState.Bad_Request.getCnMessage();
             } else if (e instanceof MissingServletRequestParameterException) {
                 MissingServletRequestParameterException msrpe = (MissingServletRequestParameterException) e;
                 message = String.format("缺少必要参数, 参数名称为: %s", msrpe.getParameterName());
                 logger.error(message);
                 state = HttpServerState.Bad_Request.getState();
+                originate = HttpServerState.Bad_Request.getCnMessage();
             } else if (e instanceof HttpRequestMethodNotSupportedException) {
                 HttpRequestMethodNotSupportedException hrmnse = (HttpRequestMethodNotSupportedException) e;
                 message = HttpServerState.Method_Not_Allowed.getCnMessage() + ": " + hrmnse.getMethod();
                 logger.error(message);
                 logger.error("StackTrace[0]:{}", hrmnse.getStackTrace()[0]);
-                state = HttpServerState.Bad_Request.getState();
+                state = HttpServerState.Method_Not_Allowed.getState();
+                originate = HttpServerState.Method_Not_Allowed.getCnMessage();
             }
         }
-        return ResultUtils.failure(state, message, e, null, null);
+        return ResultUtils.failure(state, message, e, message, originate);
     }
 
     @ExceptionHandler(Throwable.class)
     @ResponseBody
     public Result<Exception, Failure<Exception>> processEx(Exception e) {
         logger.error(HttpServerState.Internal_Server_Error.getCnMessage(), e);
-        return ResultUtils.failure(HttpServerState.Internal_Server_Error.getState(), HttpServerState.Internal_Server_Error.getCnMessage(), e, null, null);
+        return ResultUtils.failure(HttpServerState.Internal_Server_Error.getState(), HttpServerState.Internal_Server_Error.getCnMessage(), e, HttpServerState.Internal_Server_Error.getCnMessage(), HttpServerState.Internal_Server_Error.getCnMessage());
     }
 
 }

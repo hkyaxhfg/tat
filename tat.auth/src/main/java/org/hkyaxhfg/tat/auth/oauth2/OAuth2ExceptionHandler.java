@@ -25,7 +25,7 @@ public class OAuth2ExceptionHandler {
     @ResponseBody
     public Result<OAuth2Exception, Failure<OAuth2Exception>> processEx(OAuth2Exception e) {
         logger.error(HttpServerState.OAuth2_Unauthorized.getCnMessage(), e);
-        return ResultUtils.failure(HttpServerState.OAuth2_Unauthorized.getState(), HttpServerState.OAuth2_Unauthorized.getCnMessage(), e, null, null);
+        return ResultUtils.failure(HttpServerState.OAuth2_Unauthorized.getState(), HttpServerState.OAuth2_Unauthorized.getCnMessage(), e, e.toString(), HttpServerState.OAuth2_Unauthorized.getCnMessage());
     }
 
 }

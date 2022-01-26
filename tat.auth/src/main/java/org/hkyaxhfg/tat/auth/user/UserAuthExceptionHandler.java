@@ -25,7 +25,7 @@ public class UserAuthExceptionHandler {
     @ResponseBody
     public Result<UserAuthException, Failure<UserAuthException>> processEx(UserAuthException e) {
         logger.error(HttpServerState.Unauthorized.getCnMessage(), e);
-        return ResultUtils.failure(HttpServerState.Unauthorized.getState(), HttpServerState.Unauthorized.getCnMessage(), e, null, null);
+        return ResultUtils.failure(HttpServerState.Unauthorized.getState(), HttpServerState.Unauthorized.getCnMessage(), e, e.toString(), HttpServerState.Unauthorized.getCnMessage());
     }
 
 }

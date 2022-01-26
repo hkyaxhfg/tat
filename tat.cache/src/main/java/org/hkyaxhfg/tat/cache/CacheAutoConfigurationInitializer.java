@@ -1,6 +1,7 @@
 package org.hkyaxhfg.tat.cache;
 
 import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationInitializer;
+import org.hkyaxhfg.tat.cache.redis.RedisCacheService;
 import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
 import org.hkyaxhfg.tat.lang.util.TatException;
 import org.slf4j.Logger;

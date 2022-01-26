@@ -1,4 +1,4 @@
-package org.hkyaxhfg.tat.cache;
+package org.hkyaxhfg.tat.cache.redis;
 
 /**
  * 值加载器.

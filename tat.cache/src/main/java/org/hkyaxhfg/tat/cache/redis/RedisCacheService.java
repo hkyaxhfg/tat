@@ -1,4 +1,4 @@
-package org.hkyaxhfg.tat.cache;
+package org.hkyaxhfg.tat.cache.redis;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
