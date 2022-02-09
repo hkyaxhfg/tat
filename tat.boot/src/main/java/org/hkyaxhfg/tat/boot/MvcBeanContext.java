@@ -1,6 +1,5 @@
 package org.hkyaxhfg.tat.boot;
 
-import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
 import org.hkyaxhfg.tat.lang.util.LoggerGenerator;
 import org.slf4j.Logger;
 import org.springframework.beans.BeansException;
