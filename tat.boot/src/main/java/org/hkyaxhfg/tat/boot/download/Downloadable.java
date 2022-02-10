@@ -1,5 +1,6 @@
 package org.hkyaxhfg.tat.boot.download;
 
+import java.io.IOException;
 import java.io.OutputStream;
 
 /**
@@ -14,7 +15,8 @@ public interface Downloadable {
     /**
      * 将数据流放入输出流的逻辑.
      * @param os 输出流.
+     * @throws IOException IOException.
      */
-    void downloadable(OutputStream os);
+    void downloadable(OutputStream os) throws IOException;
 
 }

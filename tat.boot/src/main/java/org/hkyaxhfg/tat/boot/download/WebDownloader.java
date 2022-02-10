@@ -60,7 +60,17 @@ public class WebDownloader implements Downloader<HttpServletRequest, HttpServlet
             os.flush();
         } catch (IOException e) {
             logger.error("WebDownloader: 文件下载失败, {}", e.getMessage());
-            TatException.throwEx("WebDownloader: 文件下载失败, {}", e.getMessage());
+
+            try {
+                response.setContentType(String.format("text/html; charset=%s", DEFAULT_CHARSET.name()));
+                if (os != null) {
+                    os.write(e.getMessage().getBytes(DEFAULT_CHARSET));
+                    os.flush();
+                }
+            } catch (IOException ioe) {
+                logger.error("WebDownloader: 文件下载失败, {}", ioe.getMessage());
+            }
+
         } finally {
             IOUtils.closeQuietly(os);
         }
