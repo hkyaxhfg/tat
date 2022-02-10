@@ -13,6 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -87,7 +88,7 @@ public class AmqpAutoConfigurationInitializer {
                                 messageListener.getListenerMethodName(),
                                 AmqpUtils.messageConverter(messageListener.getMessageConverterType()),
                                 connectionFactory,
-                                messageListener.getQueueNames().split(",")
+                                Arrays.stream(messageListener.getQueueNames().split(",")).map(String::trim).toArray(String[]::new)
                         );
                     });
                 }

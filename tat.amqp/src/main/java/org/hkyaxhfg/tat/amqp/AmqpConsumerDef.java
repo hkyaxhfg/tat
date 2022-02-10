@@ -63,8 +63,12 @@ public class AmqpConsumerDef {
         private String queueListenerBeanName;
         /**
          * 监听队列的方法名称, 此方法定义必须是以下格式:
+         * 当消息消费格式为: STRING
          * 1. void methodName(String),
          * 2. returnType methodName(String).
+         * 当消息消费格式为: JSON
+         * 1. void methodName(byte[]),
+         * 2. returnType methodName(byte[]).
          */
         private String listenerMethodName;
         /**
