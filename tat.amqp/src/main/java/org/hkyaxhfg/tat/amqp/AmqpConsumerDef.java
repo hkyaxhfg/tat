@@ -13,7 +13,7 @@ import java.util.List;
 @ConfigurationProperties(prefix = AmqpConsumerDef.PREFIX)
 public class AmqpConsumerDef {
 
-    public static final String PREFIX = "hkyaxhfg.tat.amqp-consumer-def";
+    public static final String PREFIX = "hkyaxhfg.tat.amqp.amqp-consumer-def";
 
     /**
      * 是否启动Amqp自动配置.
