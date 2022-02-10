@@ -2,13 +2,17 @@ package org.hkyaxhfg.tat.enumstrategy;
 
 import com.google.gson.LongSerializationPolicy;
 import org.hkyaxhfg.tat.autoconfiguration.AutoConfigurationLogger;
+import org.hkyaxhfg.tat.lang.json.DateTypeAdapter;
 import org.hkyaxhfg.tat.lang.json.JSONProcessor;
+import org.hkyaxhfg.tat.lang.util.NewDate;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.Date;
 
 /**
  * 枚举策略自动配置器.
@@ -42,7 +46,9 @@ public class EnumStrategyAutoConfigurationInitializer {
                     gsonBuilder
                             .serializeNulls()
                             .setLongSerializationPolicy(LongSerializationPolicy.STRING)
-                            .registerTypeAdapter(EnumStrategy.class, new EnumTypeAdapter());
+                            .registerTypeAdapter(EnumStrategy.class, new EnumTypeAdapter())
+                            .registerTypeAdapter(Date.class, new DateTypeAdapter())
+                            .registerTypeAdapter(NewDate.class, new DateTypeAdapter());
                 }
         );
     }

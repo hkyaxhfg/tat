@@ -20,6 +20,8 @@ public class NewDate extends Date {
     private static final String yyyy_MM_dd = "yyyy-MM-dd";
     private static final String HH_mm_ss = "HH:mm:ss";
 
+    public static final String[] DATE_PATTENS = new String[] {yyyy_MM_dd_HH_mm_ss, yyyy_MM_dd, HH_mm_ss};
+
     // ***** PUBLIC *****
 
     public NewDate() {}

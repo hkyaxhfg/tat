@@ -2,13 +2,13 @@ package org.hkyaxhfg.tat.enumstrategy;
 
 import com.google.gson.*;
 import org.apache.commons.collections4.CollectionUtils;
+import org.hkyaxhfg.tat.lang.json.JSONProcessor;
 import org.hkyaxhfg.tat.lang.reflect.FieldReflector;
 import org.hkyaxhfg.tat.lang.util.Pair;
 import org.hkyaxhfg.tat.lang.util.TatException;
 import org.hkyaxhfg.tat.lang.util.Unaware;
 
 import java.lang.reflect.Type;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -60,19 +60,7 @@ public class EnumTypeAdapter implements JsonSerializer<EnumStrategy<?>>, JsonDes
 
     private void caseEnumFieldType(FieldReflector fieldReflector, EnumSerialization enumSerialization, EnumStrategy<?> enumStrategy, JsonObject jsonObject) {
         String fieldName = fieldReflector.getFieldName();
-        Class<?> fieldType = fieldReflector.getField().getType();
-
-        if (fieldType == String.class) {
-            jsonObject.addProperty(fieldName, fieldReflector.<String>read(enumStrategy));
-        } else if (fieldType == int.class || fieldType == Integer.class) {
-            jsonObject.addProperty(fieldName, fieldReflector.<Integer>read(enumStrategy));
-        } else if (fieldType == long.class || fieldType == Long.class) {
-            jsonObject.addProperty(fieldName, fieldReflector.<Long>read(enumStrategy));
-        } else if (fieldType == BigDecimal.class) {
-            jsonObject.addProperty(fieldName, fieldReflector.<BigDecimal>read(enumStrategy));
-        } else {
-            throw TatException.newEx("目前只支持 [int, Integer, long, Long, String, BigDecimal] 类型");
-        }
+        jsonObject.add(fieldName, new JSONProcessor().toJsonElement(fieldReflector.read(enumStrategy)));
     }
 
 }
