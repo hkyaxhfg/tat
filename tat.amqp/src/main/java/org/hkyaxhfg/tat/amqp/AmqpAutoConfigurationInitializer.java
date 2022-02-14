@@ -79,10 +79,10 @@ public class AmqpAutoConfigurationInitializer {
                 List<AmqpConsumerDef.MessageListener> messageListeners = amqpConsumerDef.getMessageListeners();
                 if (CollectionUtils.isNotEmpty(messageListeners)) {
                     messageListeners.forEach(messageListener -> {
-                        Object bean = applicationContext.getBean(messageListener.getQueueListenerBeanName());
                         if (StringUtils.isBlank(messageListener.getQueueNames())) {
                             return;
                         }
+                        Object bean = applicationContext.getBean(messageListener.getQueueListenerBeanName());
                         AmqpUtils.initQueueListener(
                                 bean,
                                 messageListener.getListenerMethodName(),
