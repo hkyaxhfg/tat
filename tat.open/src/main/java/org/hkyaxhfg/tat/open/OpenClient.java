@@ -29,15 +29,41 @@ public interface OpenClient {
      * @throws InterruptedException 中断异常.
      */
     default <T extends Response> Future<T> asyncExecute(Request<T> request) throws ExecutionException, InterruptedException {
-        return OpenCallable.executorService().submit(new OpenCallable<>(request, this::execute));
+        return asyncExecute(new OpenCallable<>(request, this::execute), OpenCallable.executorService());
     }
 
+    /**
+     * 异步执行.
+     * @param callable <C extends OpenCallable<T>>.
+     * @param executorService 执行器服务.
+     * @param <T> Response.
+     * @param <C> <C extends OpenCallable<T>>.
+     * @return Response.
+     * @throws InterruptedException 中断异常.
+     */
+    default <T extends Response, C extends OpenCallable<T>> Future<T> asyncExecute(C callable, ExecutorService executorService) throws InterruptedException {
+        return executorService.submit(callable);
+    }
+
+    /**
+     * 默认的异步执行实现.
+     * @param <T> Response.
+     */
     public static class OpenCallable<T extends Response> implements Callable<T> {
 
+        /**
+         * 默认的线程执行服务.
+         */
         private static final ExecutorService EXECUTOR_SERVICE = Executors.newCachedThreadPool();
 
+        /**
+         * 请求.
+         */
         private final Request<T> request;
 
+        /**
+         * 需要执行的操作.
+         */
         private final Function<Request<T>, T> function;
 
         public OpenCallable(Request<T> request, Function<Request<T>, T> function) {
