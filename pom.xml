@@ -22,6 +22,7 @@
         <module>tat.cloud</module>
         <module>tat.feign</module>
         <module>tat.job</module>
+        <module>tat.open</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -130,6 +131,11 @@
             <dependency>
                 <groupId>org.hkyaxhfg.tat</groupId>
                 <artifactId>tat.autoconfiguration</artifactId>
+                <version>${subproject.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.hkyaxhfg.tat</groupId>
+                <artifactId>tat.open</artifactId>
                 <version>${subproject.version}</version>
             </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
