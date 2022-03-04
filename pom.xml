@@ -23,6 +23,7 @@
         <module>tat.feign</module>
         <module>tat.job</module>
         <module>tat.open</module>
+        <module>tat.excel</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -55,6 +56,7 @@
         <reflections.version>0.10.2</reflections.version>
         <pagehelper-spring-boot-starter.version>1.4.1</pagehelper-spring-boot-starter.version>
         <xxl-job.version>2.3.0</xxl-job.version>
+        <poi.version>5.2.0</poi.version>
 
         <!-- 插件 -->
         <maven.compiler.version>3.8.1</maven.compiler.version>
@@ -138,6 +140,11 @@
                 <artifactId>tat.open</artifactId>
                 <version>${subproject.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.hkyaxhfg.tat</groupId>
+                <artifactId>tat.excel</artifactId>
+                <version>${subproject.version}</version>
+            </dependency>
             <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -176,6 +183,16 @@
                 <groupId>com.xuxueli</groupId>
                 <artifactId>xxl-job-core</artifactId>
                 <version>${xxl-job.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
             </dependency>
             <!-- import -->
             <dependency>
